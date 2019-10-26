@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*cssreset开始*/
+			* {margin: 0;padding: 0;}
+			html,body{height: 100%;overflow: hidden;}
+			html,body,h1,h2,h3,h4,h5,h6,p,ul,li{margin: 0px;padding: 0px;font: 14px "微软雅黑";}
+			a{text-decoration: none;display: block;}
+			li{list-style: none;}
+			img{display: block;}
+			.clearfix{*zoom: 1;}
+			.clearfix:after{content: "";display: block;clear: both;}
+			.commonTitle{ color:#009ee0; font-size:80px; line-height:0.8; 
+						font-weight:bold; letter-spacing:-5px;}
+			.commonText{ color:white; line-height:1.5; font-size:15px;}
+			/*cssreset结束*/
+			/*header开始*/
+			#header {width: 100%;background: white;}
+			#header_first {width: 1100px;height: 80px;margin: 0 auto;position: relative;}
+			#header_first h1 {float: left;margin-top: 30px;}
+			#header_first .audio {float: left;margin: 50px 0 0 5px;width: 14px;height: 14px;background: url(img/musicon.gif) no-repeat;}
+			
+			#header_first .nav{float: right;margin-top:50px}
+			
+			#header_first .nav .list li{float: left;margin-left:40px;position: relative;}
+			#header_first .nav .list li .up {color: #000000;position: absolute;width: 0;overflow: hidden;transition: 2s width;}
+			#header_first .nav .list li:hover .up{width: 100%;}
+			#header_first .flag{position: absolute;width: 21px;height: 11px;left: 50%;bottom: -11px; transition: 1s ;z-index: 2;}
+			/*header结束*/
+			/*#progress 开始*/
+			#progress {width: 100%;}
+			#progress .section {position: relative;overflow: hidden;width: 100%;background: gainsboro;}
+			#progress .section .uls {position: absolute;left: 0;top:0;width: 100%;transition:1s top;}
+			#progress .section .uls li{position: relative;overflow: hidden;}
+			
+			#progress .section .uls li section{width: 1100px;height: 520px;position: absolute;margin: auto;top: 0;left: 0;right: 0;bottom: 0;}
+			/*第一屏实现*/
+			#progress .section .uls .home{background: url(img/bg1.jpg) no-repeat;background-position: 50% 50%;}
+			#progress .section .uls .home .home1 {width: 100%;height: 100%;perspective: 1000px;transform-style: preserve-3d;}
+			#progress .section .uls .home .home1 li {position: absolute;top:0;right: 0;bottom: 0;left: 0;width: 100%;height: 100%;visibility: hidden;}
+			#progress .section .uls .home .home1 li:nth-of-type(1) {background: #dc6c5f;visibility: visible;}			
+			#progress .section .uls .home .home1 li:nth-of-type(2) {background:#95dc84;}	
+			#progress .section .uls .home .home1 li:nth-of-type(3) {background:#64b9d2;}
+			#progress .section .uls .home .home1 li:nth-of-type(4) {background:#000000;}
+			#progress .section .uls .home .home1 li div{text-align: center;margin-top: 200px;}
+			/*左边隐藏 右边出现*/
+			#progress .section .uls .home .home1 li.leftHide {visibility: hidden;animation:1s leftHide linear;}
+			#progress .section .uls .home .home1 li.rightShow{visibility: visible;animation: 1s rightShow linear;}
+			@keyframes leftHide{
+				0%{visibility: visible;}
+				50%{transform: translateX(-40%) rotateY(30deg) scale(0.8);}
+				100%{transform: translateZ(-200px)}
+			}
+			@keyframes rightShow{
+				0%{visibility: hidden;transform: translateZ(-200px)}
+				50%{transform: translateX(40%) rotateY(-30deg) scale(0.8);}
+				100%{}
+			}
+			/*左边出现 右边隐藏*/
+			#progress .section .uls .home .home1 li.leftShow{visibility: visible;animation: 1s leftShow linear;}
+			#progress .section .uls .home .home1 li.rightHide{visibility: hidden;animation:1s rightHide linear;}
+			@keyframes leftShow{
+				0%{visibility: hidden;transform: translateZ(-200px)}
+				50%{transform: translateX(-40%) rotateY(30deg) scale(0.8);}
+				100%{}
+				
+			}
+			@keyframes rightHide{
+				0%{visibility: visible;}
+				50%{transform: translateX(40%) rotateY(-30deg) scale(0.8);}
+				100%{transform: translateZ(-200px)}
+			}
+			
+			
+			
+			#progress .section .uls .home .home2 {position: absolute;text-align: center;bottom: 0;left: 0;right: 0;}
+			#progress .section .uls .home .home2 li {width: 20px;height: 20px;display: inline-block;background: rgba(255,255,255,0.5);
+				box-shadow: 0 0 4px rgba(25,25,25,0.8);border-radius: 5px;cursor: pointer
+				;}
+				
+			#progress .section .uls .home .home2 li.active {background: white;cursor:default}
+			/*第一屏结束*/
+			/*第二屏实现*/
+			#progress .section .uls .course{background: url(img/bg2.jpg) no-repeat;background-position: 50% 50%;}
+			#progress .section .uls .course .course1 {margin: 50px;position: relative;}
+			#progress .section .uls .course .course2 {width: 400px;margin-left: 50px;position: relative;}
+			#progress .section .uls .course .course3 {width: 480px;position: absolute;right: 50px;top: 70px;}
+			#progress .section .uls .course .course3 .item {position: relative;width: 120px;height: 132px;float: left;perspective: 500px;transform-style: preserve-3d;}
+			#progress .section .uls .course .course3 span {background: url(img/plus_row.png);width: 9px;height: 410px;position: absolute;top: -7px;left: -5px;}
+			#progress .section .uls .course .course3 span:nth-of-type(2) {transform: translate(120px);}
+			#progress .section .uls .course .course3 span:nth-of-type(3) {transform: translate(240px);}
+			#progress .section .uls .course .course3 span:nth-of-type(4) {transform: translate(360px);}
+			#progress .section .uls .course .course3 span:nth-of-type(5) {transform: translate(480px);}
+  			#progress .section .uls .course .course3 .face,#progress .section .uls .course .course3 .backface{
+  				position: absolute;width: 120px;height: 132px;top: 0;left: 0;transition: 1s transform;
+  			}
+			#progress .section .uls .course .course3 .face{background: #009ee0;padding: 15px;box-sizing: border-box;transform: rotateY(180deg);backface-visibility: hidden;}
+			
+			#progress .section .uls .course .course3 .backface {background-position: 50% 50%!important;;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(1){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(2){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(3){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(4){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(5){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(6){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(7){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(8){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(9){background: url(img/apcoa.png) no-repeat}
+			#progress .section .uls .course .course3 .backface:nth-of-type(10){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(11){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .backface:nth-of-type(12){background: url(img/apcoa.png) no-repeat;}
+			#progress .section .uls .course .course3 .item:hover .face{transform: rotateY(360deg);}
+			#progress .section .uls .course .course3 .item:hover .backface{transform: rotateY(180deg);}
+			/*第二屏结束*/
+			
+			
+			/*第三屏实现*/
+			#progress .section .uls .works{background: url(img/bg4.jpg) no-repeat;background-position: 50% 50%;}
+			#progress .section .uls .works .works1 {margin:  50px 0 100px 50px;}
+			#progress .section .uls .works .works2 {margin-left: 50px;}
+			#progress .section .uls .works .works2 .item{overflow: hidden;position:relative;float: left;width: 220px;height: 133px;margin: 0 1px;transition: 1s ;}
+			#progress .section .uls .works .works2 .item:last-of-type  {width: 332px;}
+			#progress .section .uls .works .works2 .item img {transition: 1s transform;}
+			#progress .section .uls .works .works2 .item .mark {position: absolute;top: 0;left: 0;opacity: 0;background: black;color: white;box-sizing: border-box;padding: 15px;width: 220px;height: 133px;transition: 1s opacity;}
+			#progress .section .uls .works .works2 .item:last-of-type .mark {width: 332px;}
+			#progress .section .uls .works .works2 .item .mark .icon {background: url(img/zoomico.png);width: 32px;height: 34px;margin: 10px auto;transition: 1s background-position;}
+			#progress .section .uls .works .works2 .item .mark .icon:hover {background-position: 0 -36px;}
+			#progress .section .uls .works .works2 .item:hover .mark {opacity: 0.8;}
+			#progress .section .uls .works .works2 .item:hover img{transform: rotate(30deg) scale(1.5)}
+			#progress .section .uls .works .works3 img{width: 167px;height: 191px;position: absolute;left: 900px;
+			top: 170px;animation:runningAway 4s linear infinite;}
+			@-webkit-keyframes runningAway{
+				0%{transform: translate(0px) rotateY(0deg);}
+				49%{transform: translate(-490px) rotateY(0deg);}
+				50%{transform: translate(-500px) rotateY(180deg);}
+				99%{transform: translate(-10px) rotateY(180deg);}
+				100%{transform: translate(0px) rotateY(0deg)}
+			}
+			/*第三屏结束*/
+			/*第四屏实现*/
+			#progress .section .uls .about{background: url(img/bg3.jpg) no-repeat;background-position: 50% 50%;}
+			#progress .section .uls .about .about1 {margin: 50px 0 100px 50px;}
+			#progress .section .uls .about .about2 {width: 400px;margin-left: 50px;}
+			#progress .section .uls .about .about3 .item {width: 260px;height: 200px;border: 5px solid rgba(255,255,255,0.5);
+															border-radius: 8px;position: absolute;overflow: hidden;transition: 1s;}
+			#progress .section .uls .about .about3 .item:first-child {top: 50px; left: 750px;}
+			#progress .section .uls .about .about3 .item:last-child {top: 290px;left: 600px;}
+			#progress .section .uls .about .about4 {width:357px; height: 998px;position: absolute;background: url(img/greenLine.png) no-repeat;left: 530px;
+   					 top: -15px;}
+   			#progress .section .uls .about .about3 .item span,#progress .section .uls .about .about3 .item ul {
+   				position: absolute;top: 0;right: 0;bottom: 0;left: 0;
+   			}
+			#progress .section .uls .about .about3 .item:first-child span{background: url(img/about2.jpg) no-repeat;transform: scale(1.5);transition: 1s transform;}
+			#progress .section .uls .about .about3 .item:last-child span{background: url(img/about4.jpg) no-repeat;transform: scale(1.5);transition: 1s transform;}
+			#progress .section .uls .about .about3 .item:first-child:hover span {transform: scale(1)}
+			#progress .section .uls .about .about3 .item:last-child:hover span {transform: scale(1)}
+			#progress .section .uls .about .about3 .item ul li {float: left;width: 130px;height: 100px;position: relative;overflow: hidden;}
+			#progress .section .uls .about .about3 .item ul li img {position: absolute;transition: 1s;}
+			/*第四屏结束*/
+			/*第五屏实现*/			
+			#progress .section .uls .team{background: url(img/bg5.jpg) no-repeat;background-position: 50% 50%;}
+			#progress .section .uls .team .team1 {width: 400px;margin: 50px;float: left;transition: 1s;}
+			#progress .section .uls .team .team2 {width: 400px;margin: 50px;float: right;transition: 1s;}
+			#progress .section .uls .team .team3 {width: 944px;height: 448px;position: absolute;
+					overflow: hidden;left: 0;right: 0;margin: 0 auto;top: 250px;}
+			
+			#progress .section .uls .team .team3 li{width: 118px;height:448px;background: url(img/team.png) no-repeat;float: left;transition: 1s;}		
+			#progress .section .uls .team .team3 li:nth-of-type(2) {background-position: -118px 0;}
+			#progress .section .uls .team .team3 li:nth-of-type(3) {background-position: -236px 0;}
+			#progress .section .uls .team .team3 li:nth-of-type(4) {background-position: -354px 0;}
+			#progress .section .uls .team .team3 li:nth-of-type(5) {background-position: -472px 0;}
+			#progress .section .uls .team .team3 li:nth-of-type(6) {background-position: -590px 0;}
+			#progress .section .uls .team .team3 li:nth-of-type(7) {background-position: -708px 0;}
+			#progress .section .uls .team .team3 li:nth-of-type(8) {background-position: -826px 0;}
+			#progress .section .uls .team .team3 canvas {position: absolute;top: 0;left: 0;}
+			/*第五屏结束*/
+			/*右侧小圆点*/
+			#progress .section .dot {position: absolute;right: 0;bottom: 30%;}
+			#progress .section .dot li {width: 10px;height: 10px;border: 5px solid pink;border-radius: 50%;margin: 8px;}
+			#progress .section .dot li.active {background: white;}
+			/*入场动画*/
+			#progress .section .uls .home .home1 , #progress .section .uls .home .home2 {transition: 1s;}
+			#progress .plane1{ width:359px; height:283px; background:url(img/plane1.png) no-repeat; position:absolute; left:300px; top:-100px; transition:1s;}
+			#progress .plane2{ width:309px; height:249px; background:url(img/plane2.png) no-repeat; position:absolute; left:-100px; top:200px; transition:1s;}
+			#progress .plane3{ width:230px; height:182px; background:url(img/plane3.png) no-repeat; position:absolute; left:300px; top:400px; transition:1s;}
+			#progress .pencel1{ width:180px; height:97px; background:url(img/pencel1.png) no-repeat; position:absolute; transition:1s; left:500px; top:0;}
+			#progress .pencel2{ width:268px; height:38px; background:url(img/pencel2.png) no-repeat; position:absolute; transition:1s; left:300px; top:250px;}
+			#progress .pencel3{ width:441px; height:231px; background:url(img/pencel3.png) no-repeat; position:absolute; transition:1s; left:650px; top:300px;}
+			
+			/*开场动画*/
+			#demo {height: 100%;}
+			#startMark {width: 100%;height: 100%;}
+			#startMark .up{width: 100%;height: 50%;background: deepskyblue;transition: 1s height;}
+			#startMark .line {position: absolute;top: 50%;height: 5px;transition: 1s width;background: white;z-index: 5;}
+			#startMark .dowm{width: 100%;height: 50%;background: deepskyblue;transition: 1s height;position: absolute;bottom: 0;}
+		</style>
+	</head>
+	<body>
+		<section id="demo">
+			<div id="startMark">
+				<div class="up"></div>
+				<div class="line"></div>
+				<div class="dowm"></div>
+			</div>
+			<!--流体布局-->
+			<header id="header">
+				<!--固定布局-->
+				<div id="header_first">
+					<h1>
+						<a href="xxx"><img src="img/logo.png"/></a>						
+					</h1>
+					<div class="audio">
+						<audio src="img/audio.mp3" autoplay loop></audio>
+					</div>
+					<nav class="nav">
+						<ul class="list clearfix">
+							<li>
+								<a href="javascipt:;">
+									<div class="up"><img src="img/home_gruen.png"/></div>
+									<div class="dowm"><img src="img/home.png"/></div>	
+								</a>
+							</li>
+							<li>
+								<a href="javascipt:;">
+									<div class="up">Course</div>
+									<div class="dowm">Course</div>	
+								</a>
+							</li>
+							<li>
+								<a href="javascipt:;">
+									<div class="up">Works</div>
+									<div class="dowm">Works</div>	
+								</a>
+							</li>
+							<li>
+								<a href="javascipt:;">
+									<div class="up">About</div>
+									<div class="dowm">About</div>	
+								</a>
+							</li>
+							<li>
+								<a href="javascipt:;">
+									<div class="up">Team</div>
+									<div class="dowm">Team</div>	
+								</a>
+							</li>
+							
+						</ul>
+					</nav>	
+					<div class="flag">
+						<img src="img/menuIndicator.png"/>
+					</div>
+				</div>
+				
+			</header>
+			<!--流体布局-->
+			<section id="progress">
+				<!--固定布局-->
+				<div class="section">
+					<ul class="uls  clearfix">
+
+						<li class="home">
+							<section>
+								<ul class="home1 ">
+									<li >
+										<div class="commonTitle">one layer</div>
+									</li>
+									<li>
+										<div class="commonTitle">two layer</div>
+									</li>
+									<li>
+										<div class="commonTitle">three layer</div>
+									</li>
+									<li>
+										<div class="commonTitle">four layer</div>
+									</li>
+								</ul>
+								<ul class="home2">
+									<li class="active"></li>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</section>
+						</li>
+						<li class="course">
+							<section>
+								<div class="plane1"></div>
+								<div class="plane2"></div>
+								<div class="plane3"></div>
+								<header class="course1 commonTitle">
+									<span>EINIGE</span> <br />
+									<span>UNSERER</span><br />
+									<span>KUNDEN</span><br />
+								</header>
+								<div class="course2 commonText">
+									<p>Das Kundenvertrauen in unsere Kompetenz ist die notwendige Basis einer erfolgreichen Zusammenarbeit, gleichzeitig aber auch das größte Lob, das man uns entgegenbringen kann. </p>
+									<p>Diese und viele weitere große und kleine Kunden vertrauen uns seit Jahren, was uns stolz macht, und dafür sagen wir an dieser Stelle einfach mal.</p>
+								</div>
+								<div class="course3">
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+									<div class="item">
+										<div class="backface"></div>
+										<div class="face">我是潘征杰</div>
+									</div>
+								</div>
+								
+							</section>
+						</li>
+						<li class="works">
+							
+							<section >
+								<div class="pencel1"></div>
+							    <div class="pencel2"></div>
+							    <div class="pencel3"></div>
+								<header class="works1 commonTitle">
+									<span>EINBLICK</span> <br />
+									<span>ERKENNTNIS </span><br />
+									<span>ERGEBNIS</span><br />
+								</header>
+							
+								<div class="works2">
+									<div class="item">
+										<img src="img/worksimg1.jpg"/>
+										<div class="mark">
+											<span>我是潘征杰</span>
+											<div class="icon"></div>
+										</div>
+									</div>
+									<div class="item">
+										<img src="img/worksimg2.jpg"/>
+										<div class="mark">
+											<span>我是潘征杰</span>
+											<div class="icon"></div>
+										</div>
+									</div>
+									<div class="item">
+										<img src="img/worksimg3.jpg"/>
+										<div class="mark">
+											<span>我是潘征杰</span>
+											<div class="icon"></div>
+										</div>
+									</div>
+									<div class="item">
+										<img src="img/worksimg4.jpg"/>
+										<div class="mark">
+											<span>我是潘征杰</span>
+											<div class="icon"></div>
+										</div>
+									</div>
+								</div>
+								<div class="works3">
+									<img src="img/robot.png"/>
+								</div>
+							</section>
+						</li>
+						<li class="about">
+							<section>
+								<header class="about1 commonTitle">
+									<span>DIE</span> <br />
+									<span>SPEZIELLE</span><br />
+									<span>VIELFALT</span><br />
+								</header>
+								<div class="about2 commonText">Der bunte Medienmix ist die Faszination die uns antreibt und das, was man an uns schätzt. Von A bis Z und von vorne bis hinten nehmen wir Ihr Projekt unter unsere Fittiche und lassen es zu etwas Großartigem heranwachsen.</div>
+								<div class="about4"></div>
+								<div class="about3">
+									<div class="item">
+										<span></span>
+										<ul></ul>
+									</div>
+									<div class="item">
+										<span></span>
+										<ul></ul>
+									</div>
+								</div>
+								
+							</section>
+						</li>
+						<li class="team">
+							<section>
+								<header class="team1 commonTitle">
+									<span>WIR SIND</span><br />
+									<span>VOXELAIR</span>
+								</header>
+								<div class="team2">
+									<p class="commonText">Wir sind seit 2002 eine Full-Service-Werbeagentur mit Stammsitz in Heimsheim, zwischen Stuttgart und Karlsruhe.</p>
+									<p class="commonText">Über 60 Jahre Erfahrung vereinen das gesamte VoxelAir-Team. Dabei hat jedes Voxel neben professionellem Allroundwissen auch sein ganz spezielles Gebiet, um selbst die individuellsten Kundenwünsche schnell und kompetent umzusetzen.</p>
+								</div>
+								<div class="team3">
+									<ul>
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+									</ul>
+									
+								</div>
+							</section>
+						</li>
+					</ul>
+					<ul class="dot">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				
+			</section>
+		</section>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var sections = document.querySelector('#progress .section')
+			var uls =document.querySelector('#progress .section .uls')
+			var header = document.querySelector("#header_first")
+			var lis = document.querySelectorAll('.uls>li')
+			var flag = document.querySelector('#header_first .flag')
+			var headerLis = document.querySelectorAll('#header .list li')
+			var nodeUp = document.querySelectorAll('#header .up')
+			var animationLis = document.querySelectorAll('#progress .section .uls .home .home1 li')
+			var clickLis = document.querySelectorAll('#progress .section .uls .home .home2 li')
+			var home1 = document.querySelector('#progress .section .uls .home .home1')
+			var divs = document.querySelectorAll('#progress .section .uls li div')
+			var aboutUl =document.querySelectorAll('#progress .section .uls .about .about3 .item ul')
+			var imgFirsts=document.querySelectorAll('#progress .section .uls .about .about3 .item ul li img')
+			var dotLi = document.querySelectorAll('#progress .section .dot li')
+			var team3 = document.querySelector('#progress .section .uls .team .team3')
+			var team3Lis = document.querySelectorAll('#progress .section .uls .team .team3 li')
+			var myAudio = document.querySelector('#header_first audio')
+			var audioClick = document.querySelector('#header_first .audio')
+			var marks = document.querySelector('#startMark')
+			var upItem = document.querySelector('#startMark .up')
+			var dowmItem =document.querySelector('#startMark .dowm')
+			var middleLine =document.querySelector('#startMark .line')
+			var index = 0
+			var timer = 0;
+			
+			
+			//自动轮播
+			var autoIndex = 0
+			
+			var timer2 = 0
+			
+			var nowIndex = 0 
+			var dotIndex = 0
+			//开机动画
+			var flags =0
+			var arr3 = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','about1.jpg','about2.jpg','about3.jpg','about4.jpg','worksimg1.jpg','worksimg2.jpg','worksimg3.jpg','worksimg4.jpg','team.png','greenLine.png'];
+			for (var i = 0 ;i<arr3.length;i++) {
+				
+				var img = new Image();
+				img.src="img/"+arr3[i];
+				img.onload=function(){
+					flags++;
+					middleLine.style.width = flags/arr3.length*100+"%";
+				}
+				middleLine.addEventListener('transitionend',function(){
+					upItem.style.height = 0
+					dowmItem.style.height =0
+					
+				})
+				dowmItem.addEventListener('transitionend',function(){
+					marks.remove()
+					animation()
+				})
+			}
+			//音频
+			audioClick.onclick=function(){
+				if (myAudio.paused) {
+					
+					audioClick.style.background = 'url(img/musicon.gif)'
+					myAudio.play()
+				}else if (myAudio.play) {
+					audioClick.style.background= 'url(img/musicoff.gif)'
+					myAudio.pause()
+					
+				}
+			}
+			//入场动画
+			
+			var arr2 = [
+				{
+					inTo : function(){
+						var home1 = document.querySelector("#progress .home1");
+						var home2 = document.querySelector("#progress .home2");
+						
+						home1.style.transform="translateY(0px)";
+						home2.style.transform="translateY(0px)";
+						home1.style.opacity=1;
+						home2.style.opacity=1;
+					},
+					outTo : function(){
+						var home1 = document.querySelector("#progress .home1");
+						var home2 = document.querySelector("#progress  .home2");
+						
+						home1.style.transform="translateY(-200px)";
+						home2.style.transform="translateY(100px)";
+						home1.style.opacity=0;
+						home2.style.opacity=0;
+					}
+				},
+				{
+					inTo : function(){
+						var plane1 = document.querySelector('#progress .plane1')
+						var plane2 = document.querySelector('#progress .plane2')
+						var plane3 = document.querySelector('#progress .plane3')
+						plane1.style.transform='translate(0px)'
+						plane2.style.transform='translate(0px)'
+						plane3.style.transform='translate(0px)'
+					},
+					outTo : function(){
+						var plane1 = document.querySelector('#progress .plane1')
+						var plane2 = document.querySelector('#progress .plane2')
+						var plane3 = document.querySelector('#progress .plane3')
+						plane1.style.transform='translate(-100px,-100px)'
+						plane2.style.transform='translate(-50px,50px)'
+						plane3.style.transform='translate(50px,-50px)'
+					}
+					
+				},
+				{
+					inTo : function(){
+						var pencel1 = document.querySelector('#progress .pencel1')
+						var pencel2 = document.querySelector('#progress .pencel2')
+						var pencel3 = document.querySelector('#progress .pencel3')
+						pencel1.style.transform='translate(0px)'
+						pencel2.style.transform='translate(0px)'
+						pencel3.style.transform='translate(0px)'
+					},
+					outTo : function(){
+						var pencel1 = document.querySelector('#progress .pencel1')
+						var pencel2 = document.querySelector('#progress .pencel2')
+						var pencel3 = document.querySelector('#progress .pencel3')
+						pencel1.style.transform='translateY(-100px)'
+						pencel2.style.transform='translate(-50px)'
+						pencel3.style.transform='translate(-100px)'
+					}
+				},
+				{
+					inTo : function(){
+						var picture1 = document.querySelectorAll('#progress .section .uls .about .about3 .item')[0]
+						var picture2 = document.querySelectorAll('#progress .section .uls .about .about3 .item')[1]
+						
+						picture1.style.transform='rotate(0deg)'
+						picture2.style.transform='rotate(0deg)'
+						
+					},
+					outTo : function(){
+						var picture1 = document.querySelectorAll('#progress .section .uls .about .about3 .item')[0]
+						var picture2 = document.querySelectorAll('#progress .section .uls .about .about3 .item')[1]
+						
+						picture1.style.transform='rotate(30deg)'
+						picture2.style.transform='rotate(-30deg)'
+						
+					}
+				},
+				{
+					inTo : function(){
+						var leftTitle = document.querySelector('#progress .section .uls .team .team1')
+						var rightText = document.querySelector('#progress .section .uls .team .team2')
+						leftTitle.style.transform='translate(0px)'
+						rightText.style.transform='translate(0px)'
+						
+					},
+					outTo : function(){
+						var leftTitle = document.querySelector('#progress .section .uls .team .team1')
+						var rightText = document.querySelector('#progress .section .uls .team .team2')
+						
+						leftTitle.style.transform='translate(-400px)'
+						rightText.style.transform='translate(400px)'
+						
+					}
+				}
+			
+			
+			
+			]
+			for(var i=0;i<arr2.length;i++){
+				arr2[i]["outTo"]();
+			}
+			setTimeout(function(){
+				arr2[0].inTo();
+			},2000)
+			
+			//第五屏气泡效果
+			 paopao()
+			function paopao(){
+				for (var i = 0 ; i <team3Lis.length;i++) {
+					team3Lis[i].onmouseenter=function(){
+						for (var i = 0 ; i <team3Lis.length;i++) {
+							team3Lis[i].style.opacity = '0.2'
+						}
+						
+						this.style.opacity = '1'
+						var canvas = document.createElement('canvas')
+						team3.appendChild(canvas)
+						canvas.width = team3Lis[0].offsetWidth
+						canvas.height = team3Lis[0].offsetHeight/3*2
+						canvas.style.left = this.offsetLeft + 'px'
+						
+						
+						paopao2(canvas)
+						canvas.onmouseleave=function(){
+							for (var i = 0 ; i <team3Lis.length;i++) {
+							team3Lis[i].style.opacity = '1'
+							}
+							canvas.remove()
+							canvas = null
+							clearInterval(timex);
+							clearInterval(timexx);
+						}
+					}
+				
+				}
+				
+			}
+			function paopao2(test){
+				
+				if(test.getContext){
+					var b = test.getContext('2d')
+					var deg = 0
+					var index1 = 20
+					var arr = []
+					timex =	setInterval(function(){
+						
+						b.clearRect(0,0,test.width,test.height)
+						for (var i = 0 ; i < arr.length;i ++) {
+							arr[i].deg += 5
+							arr[i].x = arr[i].startX +  (Math.sin(arr[i].deg*Math.PI/180))*index1
+							arr[i].y = arr[i].startY - (arr[i].deg*Math.PI/180)*index1
+							if (arr[i].y <= 50) {
+								arr.splice(i,1)
+							}
+						}
+						for(var i = 0 ; i < arr.length;i ++){
+							b.save()
+							b.fillStyle = 'rgba('+arr[i].one+','+arr[i].two+','+arr[i].three+','+arr[i].fore+')'
+							b.beginPath()
+							b.arc(arr[i].x,arr[i].y,arr[i].r,0,360*Math.PI/180)
+							b.fill()
+							b.restore()
+						}
+					},10)
+						
+					timexx =setInterval(function(){
+						var x = Math.round(Math.random()*test.width)
+						
+						var r = Math.round(Math.random()*2 + 5 )
+						var y = test.height - r
+						
+						var one = Math.round(Math.random()*255)
+						var two = Math.round(Math.random()*255)
+						var three = Math.round(Math.random()*255)
+						var fore = 0.8
+						var startX = x
+						var startY = y
+						arr.push({
+							x:x,
+							y:y,
+							r:r,
+							one:one,
+							two:two,
+							three:three,
+							fore:fore,
+							startX:startX,
+							startY:startY,
+							deg:deg
+						})
+					},100)
+				}
+			}
+			
+			
+			
+			
+			//第四屏的图片炸裂效果
+			var src = 'img/about1.jpg'
+			pictureBond()
+			function pictureBond(){
+				for (var i = 0 ; i < aboutUl.length ; i++) {
+					src = 'img/about'+(2*i+1)+'.jpg'
+					pictureBond2(aboutUl[i])
+					
+				}
+				
+			}
+			function pictureBond2(aboutU){
+				for (var i = 0 ; i < 4 ; i++) {
+					var list = document.createElement('li')
+					var imgs = document.createElement('img')
+					list.appendChild(imgs)
+					aboutU.appendChild(list)
+					imgs.src = src 
+				}
+				var w = aboutU.offsetWidth/2
+				var h = aboutU.offsetHeight/2
+				var imgs1 = aboutU.querySelectorAll('li>img')
+				/*1. top: 0  left : 0
+				  2. top :0  left : -w
+				  3. top :-h left : 0 
+				  4. top :-h left :-w*/
+				 for (var j = 0 ; j< 4 ; j++) {
+				 	 imgs1[j].style.left = -(j%2)*w +'px'
+				 	 imgs1[j].style.top =-Math.floor(j/2)*h +'px'
+				 }
+				 
+				aboutU.onmouseenter=function(){
+				/*1. top: h  left : 0
+				  2. top :0  left : -2w
+				  3. top :-h left : w 
+				  4. top :-2h left :-w*/
+					 imgs1[0].style.top = h +'px'
+				 	 imgs1[1].style.left = -2*w +'px'
+				 	 imgs1[2].style.left = w +'px'
+				 	 imgs1[3].style.top = -2*h +'px'
+				}
+				aboutU.onmouseleave=function(){
+				  	imgs1[0].style.top = 0 +'px'
+				 	 imgs1[1].style.left = -w +'px'
+				 	 imgs1[2].style.left = 0 +'px'
+				 	 imgs1[3].style.top = -h +'px'
+				}
+			}
+			
+			
+			
+			
+			
+			
+			home1.onmouseenter=function(){
+				clearInterval(timer2)
+			}
+			home1.onmouseleave=function(){
+				animation()
+			}
+			clickMove()
+			function clickMove(){
+				
+				for (var i = 0 ; i<clickLis.length;i++) {
+					(function(i){
+						
+						clickLis[i].onclick=function(){
+							clearInterval(timer2)
+							for (var j = 0 ; j<clickLis.length;j++) {
+								clickLis[j].classList.remove('active')
+							}
+							this.classList.add('active')
+							
+							if(nowIndex<i){
+								animationLis[nowIndex].classList.remove('leftShow')
+								animationLis[nowIndex].classList.remove('rightHide')
+								animationLis[nowIndex].classList.remove('rightShow')
+								animationLis[nowIndex].classList.add('leftHide')
+								
+								
+								animationLis[i].classList.remove('leftShow')
+								animationLis[i].classList.remove('rightHide')
+								animationLis[i].classList.remove('leftHide')
+								animationLis[i].classList.add('rightShow')
+							}
+							if (nowIndex>i) {
+								animationLis[nowIndex].classList.remove('leftShow')
+								animationLis[nowIndex].classList.remove('rightShow')
+								animationLis[nowIndex].classList.remove('leftHide')
+								animationLis[nowIndex].classList.add('rightHide')
+								
+								
+								animationLis[i].classList.remove('rightShow')
+								animationLis[i].classList.remove('rightHide')
+								animationLis[i].classList.remove('leftHide')
+								animationLis[i].classList.add('leftShow')
+							}
+							console.log(i)
+							nowIndex = i
+							
+							autoIndex = i
+							
+						}
+					})(i)
+				}
+				
+			}
+			
+			function animation(){
+				clearInterval(timer2)
+				timer2 = setInterval(function(){			
+					autoIndex ++
+					
+					/*for (var i = 0 ; i<animationLis.length;i++) {
+						animationLis[i].classList.remove('')
+					}*/
+					
+					if (autoIndex==animationLis.length) {
+						autoIndex =0
+					}
+					for (var i = 0 ; i<animationLis.length;i++) {
+						clickLis[i].classList.remove('active')
+					}
+					clickLis[autoIndex].classList.add('active')
+					animationLis[nowIndex].classList.remove('leftShow')
+					animationLis[nowIndex].classList.remove('rightHide')
+					animationLis[nowIndex].classList.remove('rightShow')
+					animationLis[nowIndex].classList.add('leftHide')
+					
+					
+					animationLis[autoIndex].classList.remove('leftShow')
+					animationLis[autoIndex].classList.remove('rightHide')
+					animationLis[autoIndex].classList.remove('leftHide')
+					animationLis[autoIndex].classList.add('rightShow')
+					
+					nowIndex = autoIndex
+				},2000)
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//滚轮的常规操作 火狐与非火狐
+			if(sections.addEventListener){
+				sections.addEventListener("DOMMouseScroll",function(ev){
+					//设置定时器，防止过度轮滑
+					ev=ev||event;
+					clearTimeout(timer);
+					timer = setTimeout(function(){
+						fn(ev)
+					},200)
+				});
+			};
+			sections.onmousewheel=function(ev){
+				//设置定时器，防止过度轮滑
+					ev=ev||event;
+					clearTimeout(timer);
+					timer = setTimeout(function(){
+						fn(ev)
+					},200)
+			};
+			
+			
+			function fn(ev){
+				ev=ev||event;
+				var dir="";
+				if(ev.wheelDelta){
+					dir = ev.wheelDelta>0?"up":"down";
+				}
+				if(ev.detail){
+					dir = ev.detail<0?"up":"down";
+				}
+				
+				
+				/*
+				 对样式进行设置(特殊性最高)
+					node.style.height 
+				对样式进行读取
+					node.style.height (读不到css样式表中属性的)
+					读取一般通过api来进行读取
+					testNode.getComputedStyle()
+				*/
+				dotIndex = index
+				switch (dir){
+					
+					case "up":
+					
+					if(index>0){
+						index--
+					}
+					move(index)
+					//...
+						break;
+					case "down":
+					if (index==4) {
+						dotIndex = null
+					}
+					if(index<4){
+						index++
+					}
+					
+					move(index)				
+					//....
+						break;
+				}
+				
+				//禁止事件的默认行为  dom2
+				if(ev.preventDefault){
+					ev.preventDefault();
+				}
+				
+				
+				//禁止事件的默认行为  dom0
+				return false;
+			}
+			
+			
+			
+			
+			
+			//窗口大小重置内容区的高度和每个LI的高度
+			window.onresize = function(){
+				resize()
+				uls.style.top = -index*(document.documentElement.clientHeight - header.offsetHeight) + 'px'
+				flag.style.left = headerLis[index].offsetLeft + headerLis[index].offsetWidth/2 - flag.offsetWidth/2 +'px';
+			}
+			
+			
+			resize()
+			function resize(){
+				sections.style.height = document.documentElement.clientHeight - header.offsetHeight + 'px'
+				for(var i=0;i<lis.length;i++){
+						lis[i].style.height = document.documentElement.clientHeight - header.offsetHeight + 'px'
+				}
+			}
+			
+			//旗帜图标的起始位置，首页图标背景黑色，还有点击事件
+			begin()
+			function begin(){
+				nodeUp[0].style.width = '100%'
+				flag.style.left = headerLis[0].offsetLeft + headerLis[0].offsetWidth/2 - flag.offsetWidth/2 +'px';
+				 
+					for(var i = 0 ; i<headerLis.length;i++) {
+						(function(i){
+							
+							headerLis[i].onclick=function(){
+								dotIndex = index
+								move(i)
+								index = i
+								
+							}
+						})(i)
+					}
+				
+				 
+			}
+			//点击右侧小圆点
+			for(var i = 0 ; i<headerLis.length;i++) {
+				(function(i){
+					
+					dotLi[i].onclick=function(){
+						dotIndex = index
+						move(i)
+						index = i
+						
+					}
+				})(i)
+			}
+				//动画 图标变黑，图标位置移动，ul的向上向下滑动
+			function move(i){
+				for (var j = 0 ;j<headerLis.length;j++) {
+						nodeUp[j].style.width = '';
+					};
+				flag.style.left = headerLis[i].offsetLeft + headerLis[i].offsetWidth/2 - flag.offsetWidth/2 +'px';
+				nodeUp[i].style.width = '100%';
+				uls.style.top = -i*(document.documentElement.clientHeight - header.offsetHeight) + 'px'
+				for (var k = 0 ; k<dotLi.length;k++) {
+					dotLi[k].classList.remove('active')
+				
+				}
+				dotLi[i].classList.add('active')
+				if(arr2[i]&&typeof arr2[i]["inTo"] === "function"){
+					arr2[i]["inTo"]();
+				}
+				if(arr2[dotIndex]&&typeof arr2[dotIndex]["inTo"] === "function"){
+					arr2[dotIndex]["outTo"]();
+				}
+			}
+		}
+	</script>
+</html>
